@@ -4,16 +4,16 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'phone-book',
+    'language' => 'en-US',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','gii','debug'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'SOkN7VZnczcBnUZrGA3I8mE1kCWADXJD',
         ],
         'cache' => [
@@ -43,15 +43,25 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'user/index'
             ],
         ],
-        */
+
     ],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module'
+        ],
+        'debug' => [
+            'class' => 'yii\debug\Module'
+        ],
+    ],
+
     'params' => $params,
 ];
 
